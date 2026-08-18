@@ -40,6 +40,14 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (APlayerController* PlayerController =  Cast<APlayerController>(GetController()))
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+		
+		RotateTurret(HitResult.ImpactPoint);
+	}
+	
 }
 
 // Called to bind functionality to input
