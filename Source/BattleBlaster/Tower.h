@@ -26,4 +26,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	ATank* Tank;
+	
+	UPROPERTY(EditAnywhere)
+	float FireRange = 300.0f;
 };
