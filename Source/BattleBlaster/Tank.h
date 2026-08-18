@@ -46,6 +46,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* TurnAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* FireAction;
+	
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp;
 	
