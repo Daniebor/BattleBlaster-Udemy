@@ -10,14 +10,14 @@
     <Platform Name="Win64-arm64ec" />
   </Configurations>
   <Folder Name="/Engine/">
-    <Project Path="Intermediate/ProjectFiles/UE5.vcxproj" Id="d7d865d1-2cb3-30f0-b251-fe3891c289fd">
+    <Project Path="Intermediate/ProjectFiles/UE5.vcxproj" Id="c64b827b-6ec6-31c0-9b95-06113b567ae0">
       <BuildType Project="BuiltWithUnrealBuildTool" />
       <Platform Project="Win64" />
       <Build Project="false" />
     </Project>
   </Folder>
   <Folder Name="/Games/">
-    <Project Path="Intermediate/ProjectFiles/BattleBlaster.vcxproj" Id="92cbd892-ed50-3506-b92a-c94b6558399c">
+    <Project Path="Intermediate/ProjectFiles/BattleBlaster.vcxproj" Id="522e3945-e712-3f50-af6c-8669f70823e5">
       <BuildType Solution="DebugGame Editor|Win64" Project="DebugGame_Editor" />
       <BuildType Solution="DebugGame Editor|Win64-arm64" Project="Win64_arm64_DebugGame_Editor" />
       <BuildType Solution="DebugGame Editor|Win64-arm64ec" Project="Win64_arm64ec_DebugGame_Editor" />
