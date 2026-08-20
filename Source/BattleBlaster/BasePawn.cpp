@@ -44,3 +44,8 @@ void ABasePawn::Fire()
 		Projectile->SetOwner(this);
 	}
 }
+
+void ABasePawn::HandleDestruction()
+{
+	UE_LOG(LogTemp, Display, TEXT("Basepawn handle destruction"));;
+}

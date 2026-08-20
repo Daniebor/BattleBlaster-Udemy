@@ -37,4 +37,6 @@ public:
 	void RotateTurret(FVector LookAtTarget);
 	
 	void Fire();
+	
+	void HandleDestruction();
 };
