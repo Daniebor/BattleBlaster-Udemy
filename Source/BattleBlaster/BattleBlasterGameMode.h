@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 
 #include "Tank.h"
+#include "ScreenMessage.h"
 
 #include "BattleBlasterGameMode.generated.h"
 
@@ -27,6 +28,11 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	int32 CountdownDelay = 3;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UScreenMessage>	ScreenMessageClass;
+	
+	UScreenMessage* ScreenMessageWidget;
 	
 	int32 CountdownSeconds;
 	

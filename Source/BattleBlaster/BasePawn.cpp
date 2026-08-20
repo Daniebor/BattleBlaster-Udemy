@@ -4,6 +4,7 @@
 #include "BasePawn.h"
 
 #include "Animation/AnimExecutionContext.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -47,5 +48,21 @@ void ABasePawn::Fire()
 
 void ABasePawn::HandleDestruction()
 {
-	UE_LOG(LogTemp, Display, TEXT("Basepawn handle destruction"));;
+	if (DeathParticles)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), DeathParticles, GetActorLocation(), GetActorRotation());
+	}
+	
+	if (DeathSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSound, GetActorLocation());
+	}
+	
+	if (DeathCameraShakeClass)
+	{
+		if (APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0))
+		{
+			PlayerController->ClientStartCameraShake(DeathCameraShakeClass);
+		}
+	}
 }
