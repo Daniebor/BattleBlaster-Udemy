@@ -6,6 +6,7 @@
 #include "BattleBlasterGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tower.h"
+#include "DSP/MidiNoteQuantizer.h"
 
 void ABattleBlasterGameMode::BeginPlay()
 {
@@ -37,7 +38,26 @@ void ABattleBlasterGameMode::BeginPlay()
 		}
 	}
 	
-	
+	CountdownSeconds = CountdownDelay;
+	GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ABattleBlasterGameMode::OnCountdownTimerTimeout, 1.0f, true);
+}
+
+void ABattleBlasterGameMode::OnCountdownTimerTimeout()
+{
+	CountdownSeconds--;
+	if (CountdownSeconds > 0)
+	{
+		UE_LOG(LogTemp, Display, TEXT("CountdownSeconds: %d"), CountdownSeconds);
+	}
+	else if (CountdownSeconds == 0)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Go!"));
+		Tank->SetPlayerEnabled(true);
+	}
+	else
+	{
+		GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
+	}
 }
 
 void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
@@ -68,8 +88,6 @@ void ABattleBlasterGameMode::ActorDied(AActor* DeadActor)
 	if (IsGameOver)
 	{
 		FString GameOverString = IsVictory ? "Victory!" : "Defeat!";
-		
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *GameOverString);
 		
 		FTimerHandle GameOverTimerHandle;
 		GetWorldTimerManager().SetTimer(GameOverTimerHandle, this, &ABattleBlasterGameMode::OnGameOverTimerTimeout, GameOverDelay, false);
